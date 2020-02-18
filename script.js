@@ -6,6 +6,7 @@ const DISPLAY = document.querySelector("#display");
 var operatorPressed = false;
 var decimalPressed = false;
 var waitSecondNum = false;
+var displayFilled = false;
 var operator = "";
 var decimal = "";
 var firstNum = null;
@@ -26,9 +27,16 @@ function pushNumButton() {
           secondNum = DISPLAY.innerHTML;
           console.log("second number: " + secondNum);
         } else {
-          DISPLAY.innerHTML += target.innerHTML;
-          firstNum = DISPLAY.innerHTML;
-          console.log("first number: " + firstNum);
+          if (displayFilled) {
+            DISPLAY.innerHTML = target.innerHTML;
+            firstNum = DISPLAY.innerHTML;
+            displayFilled = false;
+            console.log("first number: " + firstNum);
+          } else {
+            DISPLAY.innerHTML += target.innerHTML;
+            firstNum = DISPLAY.innerHTML;
+            console.log("first number: " + firstNum);
+          }
         }
       }
     });
@@ -94,6 +102,7 @@ function equalsButton() {
       var fixedFinalNum = finalNum.toFixed(8);
       DISPLAY.innerHTML = fixedFinalNum;
       firstNum = fixedFinalNum;
+      displayFilled = true;
       waitSecondNum = false;
       decimalPressed = false;
       operatorPressed = false;
