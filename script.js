@@ -55,6 +55,7 @@ function pushOpButton() {
         console.log(operator);
         waitSecondNum = true;
         decimalPressed = false;
+       
       }
     });
   }
@@ -67,13 +68,17 @@ function decimalButton() {
     if (!decimalPressed) {
       if (operatorPressed) {
         decimal = target.innerHTML;
-        DISPLAY.innerHTML = decimal;
+        DISPLAY.innerHTML = "0" + decimal;
         decimalPressed = true;
         operatorPressed = false;
         console.log(decimal);
       } else {
         decimal = target.innerHTML;
-        DISPLAY.innerHTML += decimal;
+        if (DISPLAY.innerHTML == "") {
+          DISPLAY.innerHTML = "0" + decimal;
+        } else {
+          DISPLAY.innerHTML += decimal;
+        }
         decimalPressed = true;
         console.log(decimal);
       }
@@ -86,6 +91,7 @@ function equalsButton() {
   var finalNum = 0;
   EQUALS.addEventListener("click", event => {
     const { target } = event;
+    var fixedFinalNum = "";
     if (!operatorPressed) {
       if (operator == "PLUS") {
         finalNum = parseFloat(firstNum) + parseFloat(secondNum);
@@ -99,7 +105,8 @@ function equalsButton() {
       if (operator == "DIVIDE") {
         finalNum = parseFloat(firstNum) / parseFloat(secondNum);
       }
-      var fixedFinalNum = finalNum.toFixed(8);
+      fixedFinalNum = finalNum.toFixed(8);
+      fixedFinalNum = parseFloat(fixedFinalNum);
       DISPLAY.innerHTML = fixedFinalNum;
       firstNum = fixedFinalNum;
       displayFilled = true;
