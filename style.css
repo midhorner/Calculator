@@ -1,3 +1,12 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   background-color: cornflowerblue;
   height: 100vh;
@@ -21,7 +30,11 @@ body h1 {
   width: 360px;
   height: 100px;
   margin: 0 auto;
+  color: black;
+  font-size: 20px;
+  text-align: right;
   background-color: green;
+  border-style: none;
 }
 
 #num-btns {
@@ -29,7 +42,7 @@ body h1 {
   display: flex;
   flex-wrap: wrap;
   margin-top: 15px;
-  width: 210px;
+  width: 180px;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -38,7 +51,7 @@ body h1 {
   height: 50px;
   width: 70px;
   margin: 5px;
-  padding: 2px;
+  padding: 12px;
   background-color: lightslategray;
   border: 1px solid black;
 }
@@ -46,26 +59,37 @@ body h1 {
 #op-btns {
   float: right;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   margin-top: 15px;
-  width: 190px;
+  width: 180px;
+  justify-content: space-evenly;
   align-items: center;
 }
 
 .op-btn {
   height: 50px;
-  width: 150px;
+  width: 70px;
   margin: 5px;
-  padding: 2px;
+  padding: 12px;
   background-color: lightslategray;
   border: 1px solid black;
 }
 
 .lft-ovr {
-  display: inline-block;
   height: 50px;
   width: 70px;
-  margin: 10px;
+  margin: 5px;
+  padding: 12px;
   background-color: lightslategray;
   border: 1px solid black;
+}
+
+#clear {
+  height: 50px;
+  width: 70px;
+  margin: 5px;
+  padding: 12px;
+  background-color: lightcoral;
+  border: 1px solid black;
+  border-style: none;
 }

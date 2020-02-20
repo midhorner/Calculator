@@ -3,21 +3,26 @@ const OPERATORS = [...document.querySelectorAll(".op-btn")];
 const EQUALS = document.querySelector("#equals");
 const DECIMAL = document.querySelector("#dec");
 const DISPLAY = document.querySelector("#display");
+
+var operationPerformed = false;
 var operatorPressed = false;
 var decimalPressed = false;
 var waitSecondNum = false;
 var displayFilled = false;
 var operator = "";
 var decimal = "";
-var firstNum = null;
+var firstNum = 0;
 var secondNum = null;
+
+DISPLAY.innerHTML = 0;
 
 function pushNumButton() {
   for (element of NUMBUTTONS) {
     element.addEventListener("click", event => {
       const { target } = event;
+      operationPerformed = false;
       if (operatorPressed) {
-        DISPLAY.innerHTML = target.innerHTML;
+        DISPLAY.innerHTML += target.innerHTML;
         secondNum = DISPLAY.innerHTML;
         operatorPressed = false;
         console.log("second number: " + secondNum);
@@ -27,7 +32,7 @@ function pushNumButton() {
           secondNum = DISPLAY.innerHTML;
           console.log("second number: " + secondNum);
         } else {
-          if (displayFilled) {
+          if (displayFilled || DISPLAY.innerHTML == "0") {
             DISPLAY.innerHTML = target.innerHTML;
             firstNum = DISPLAY.innerHTML;
             displayFilled = false;
@@ -48,14 +53,14 @@ function pushOpButton() {
   for (element of OPERATORS) {
     element.addEventListener("click", event => {
       const { target } = event;
+      operationPerformed = false;
       if (!operatorPressed && !waitSecondNum) {
         operatorPressed = true;
         operator = target.innerHTML;
-        DISPLAY.innerHTML = operator;
+        DISPLAY.innerHTML += operator;
         console.log(operator);
         waitSecondNum = true;
         decimalPressed = false;
-       
       }
     });
   }
@@ -65,7 +70,7 @@ pushOpButton();
 function decimalButton() {
   DECIMAL.addEventListener("click", event => {
     const { target } = event;
-    if (!decimalPressed) {
+    if (!decimalPressed && !operationPerformed) {
       if (operatorPressed) {
         decimal = target.innerHTML;
         DISPLAY.innerHTML = "0" + decimal;
@@ -93,16 +98,16 @@ function equalsButton() {
     const { target } = event;
     var fixedFinalNum = "";
     if (!operatorPressed) {
-      if (operator == "PLUS") {
+      if (operator == "+") {
         finalNum = parseFloat(firstNum) + parseFloat(secondNum);
       }
-      if (operator == "MINUS") {
+      if (operator == "-") {
         finalNum = parseFloat(firstNum) - parseFloat(secondNum);
       }
-      if (operator == "MULTIPLY") {
+      if (operator == "*") {
         finalNum = parseFloat(firstNum) * parseFloat(secondNum);
       }
-      if (operator == "DIVIDE") {
+      if (operator == "/") {
         finalNum = parseFloat(firstNum) / parseFloat(secondNum);
       }
       fixedFinalNum = finalNum.toFixed(8);
@@ -110,6 +115,7 @@ function equalsButton() {
       DISPLAY.innerHTML = fixedFinalNum;
       firstNum = fixedFinalNum;
       displayFilled = true;
+      operationPerformed = true;
       waitSecondNum = false;
       decimalPressed = false;
       operatorPressed = false;

@@ -10,7 +10,7 @@
   <body>
     <h1>Calculator</h1>
     <div id="calc-wrap">
-      <div id="display"></div>
+      <textarea id="display" disabled></textarea>
       <div id="num-btns">
         <div class="num-btn" id="num1">1</div>
         <div class="num-btn" id="num2">2</div>
@@ -24,13 +24,14 @@
         <div class="num-btn" id="num0">0</div>
       </div>
       <div id="op-btns">
-          <div class="op-btn" id="plus">PLUS</div>
-          <div class="op-btn" id="minus">MINUS</div>
-          <div class="op-btn" id="multiply">MULTIPLY</div>
-          <div class="op-btn" id="divide">DIVIDE</div>
+        <div class="op-btn" id="plus">+</div>
+        <div class="op-btn" id="minus">-</div>
+        <div class="op-btn" id="multiply">*</div>
+        <div class="op-btn" id="divide">/</div>
+        <div class="lft-ovr" id="dec">.</div>
+        <div class="lft-ovr" id="equals">=</div>
+        <button id="clear">CLEAR</button>
       </div>
-      <div class="lft-ovr" id="dec">.</div>
-      <div class="lft-ovr" id="equals">=</div>
     </div>
   </body>
 </html>
