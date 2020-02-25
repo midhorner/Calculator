@@ -91,5 +91,5 @@ body h1 {
   padding: 12px;
   background-color: lightcoral;
   border: 1px solid black;
-  border-style: none;
+  outline: none;
 }
