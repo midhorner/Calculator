@@ -4,7 +4,7 @@ const EQUALS = document.querySelector("#equals");
 const DECIMAL = document.querySelector("#dec");
 const CLEAR = document.querySelector("#clear");
 const DISPLAY = document.querySelector(".display");
-const FLIP = document.querySelector("h1");
+const FLIP = document.querySelector(".header");
 
 var operationPerformed = false;
 var operatorPressed = false;
