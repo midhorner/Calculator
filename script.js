@@ -138,7 +138,7 @@ clearButton();
 
 function flip() {
   FLIP.addEventListener("click", event => {
-    const { target } = event;
+    const {} = event;
     document.querySelector("#calc-wrap").classList.toggle("flip");
   });
 }
