@@ -4,6 +4,7 @@ const EQUALS = document.querySelector("#equals");
 const DECIMAL = document.querySelector("#dec");
 const CLEAR = document.querySelector("#clear");
 const DISPLAY = document.querySelector(".display");
+const FLIP = document.querySelector("h1");
 
 var operationPerformed = false;
 var operatorPressed = false;
@@ -26,22 +27,18 @@ function pushNumButton() {
         DISPLAY.value = target.value;
         secondNum = DISPLAY.value;
         operatorPressed = false;
-        console.log("second number: " + secondNum);
       } else {
         if (waitSecondNum) {
           DISPLAY.value += target.value;
           secondNum = DISPLAY.value;
-          console.log("second number: " + secondNum);
         } else {
           if (displayFilled || DISPLAY.value == "0") {
             DISPLAY.value = target.value;
             firstNum = DISPLAY.value;
             displayFilled = false;
-            console.log("first number: " + firstNum);
           } else {
             DISPLAY.value += target.value;
             firstNum = DISPLAY.value;
-            console.log("first number: " + firstNum);
           }
         }
       }
@@ -59,7 +56,6 @@ function pushOpButton() {
         operatorPressed = true;
         operator = target.id;
         DISPLAY.value = target.innerHTML;
-        console.log("operator: " + operator);
         waitSecondNum = true;
         decimalPressed = false;
       }
@@ -77,7 +73,6 @@ function decimalButton() {
         DISPLAY.value = "0" + decimal;
         decimalPressed = true;
         operatorPressed = false;
-        console.log("decimal pressed: " + decimal);
       } else {
         decimal = target.innerHTML;
         if (DISPLAY.value == "") {
@@ -86,7 +81,6 @@ function decimalButton() {
           DISPLAY.value += decimal;
         }
         decimalPressed = true;
-        console.log("decimal pressed: " + decimal);
       }
     }
   });
@@ -95,7 +89,7 @@ decimalButton();
 
 function equalsButton() {
   EQUALS.addEventListener("click", event => {
-    const { target } = event;
+    const {} = event;
     if (!operatorPressed && waitSecondNum) {
       if (operator == "plus") {
         finalNum = parseFloat(firstNum) + parseFloat(secondNum);
@@ -117,7 +111,6 @@ function equalsButton() {
       waitSecondNum = false;
       decimalPressed = false;
       operatorPressed = false;
-      console.log(firstNum + " " +  operator + " " + secondNum + " equals " + fixedFinalNum);
       firstNum = fixedFinalNum;
     }
   });
@@ -126,7 +119,7 @@ equalsButton();
 
 function clearButton() {
   CLEAR.addEventListener("click", event => {
-    const { target } = event;
+    const {} = event;
     DISPLAY.value = 0;
     operationPerformed = false;
     operatorPressed = false;
@@ -142,3 +135,11 @@ function clearButton() {
   });
 }
 clearButton();
+
+function flip() {
+  FLIP.addEventListener("click", event => {
+    const { target } = event;
+    document.querySelector("#calc-wrap").classList.toggle("flip");
+  });
+}
+flip();
