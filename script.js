@@ -6,17 +6,16 @@ const CLEAR = document.querySelector("#clear");
 const DISPLAY = document.querySelector(".display");
 const FLIP = document.querySelector(".header");
 
-var operationPerformed = false;
-var operatorPressed = false;
-var decimalPressed = false;
-var waitSecondNum = false;
-var displayFilled = false;
-var operator = "";
-var decimal = "";
+var [
+  operationPerformed,
+  operatorPressed,
+  decimalPressed,
+  waitSecondNum,
+  displayFilled
+] = [false, false, false, false, false];
+var [operator, decimal] = ["", ""];
 var firstNum = 0;
-var secondNum = null;
-var finalNum = null;
-var fixedFinalNum = null;
+var [secondNum, finalNum, fixedFinalNum] = [null, null, null];
 
 function pushNumButton() {
   for (element of NUMBUTTONS) {
@@ -106,11 +105,8 @@ function equalsButton() {
       fixedFinalNum = finalNum.toFixed(8);
       fixedFinalNum = parseFloat(fixedFinalNum);
       DISPLAY.value = fixedFinalNum;
-      displayFilled = true;
-      operationPerformed = true;
-      waitSecondNum = false;
-      decimalPressed = false;
-      operatorPressed = false;
+      [displayFilled, operationPerformed] = [true, true];
+      [waitSecondNum, decimalPressed, operatorPressed] = [false, false, false];
       firstNum = fixedFinalNum;
     }
   });
@@ -121,17 +117,16 @@ function clearButton() {
   CLEAR.addEventListener("click", event => {
     const {} = event;
     DISPLAY.value = 0;
-    operationPerformed = false;
-    operatorPressed = false;
-    decimalPressed = false;
-    waitSecondNum = false;
-    displayFilled = false;
-    operator = "";
-    decimal = "";
+    [
+      operationPerformed,
+      operatorPressed,
+      decimalPressed,
+      waitSecondNum,
+      displayFilled
+    ] = [false, false, false, false, false];
+    [operator, decimal] = ["", ""];
     firstNum = 0;
-    secondNum = null;
-    finalNum = null;
-    fixedFinalNum = null;
+    [secondNum, finalNum, fixedFinalNum] = [null, null, null];
   });
 }
 clearButton();
